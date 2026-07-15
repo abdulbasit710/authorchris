@@ -1,0 +1,49 @@
+.cristo-social { position: relative; isolation: isolate; height: 100vh; overflow: hidden; background: #050505; color: #fff7e9; }
+.cristo-social::before { content: ""; position: absolute; z-index: 0; inset: -10% -8% -4%; pointer-events: none; background: repeating-conic-gradient(from -32deg at 50% -8%, transparent 0deg 6deg, rgba(217,171,85,.09) 7deg 8deg, rgba(217,171,85,.025) 9deg 11deg, transparent 12deg 19deg); opacity: .3; filter: blur(7px); -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.75) 42%, transparent 92%); mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.75) 42%, transparent 92%); animation: cristo-rays-drift 13s ease-in-out infinite alternate; transform-origin: 50% 0%; }
+.cristo-social::after { content: ""; position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(5,5,5,.35), transparent 22% 78%, rgba(5,5,5,.35)); }
+.cristo-social__rays { z-index: 0; opacity: .42; mix-blend-mode: screen; filter: saturate(.85) brightness(.78); }
+.cristo-social__stage { position: relative; z-index: 1; display: grid; width: 100%; height: 100%; place-items: center; padding: 32px 24px; }
+
+@keyframes cristo-rays-drift {
+  from { opacity: .22; transform: scaleX(.97) rotate(-.4deg); }
+  to { opacity: .36; transform: scaleX(1.03) rotate(.4deg); }
+}
+.cristo-social__heading { position: absolute; z-index: 2; display: flex; flex-direction: column; align-items: center; width: min(1100px, 92vw); text-align: center; will-change: transform, opacity, filter; }
+.cristo-social__heading p, .cristo-social__role, .cristo-social__card-label { color: #d9ab55; font-size: .68rem; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.cristo-social__heading h2 { margin: 18px 0 30px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.04rem, 7.36vw, 7.36rem); font-weight: 400; letter-spacing: -.055em; line-height: .8; }
+.cristo-social__heading h2 em { color: #d9ab55; font-weight: 400; }
+.cristo-social__line { display: block; width: min(280px, 58vw); height: 1px; background: linear-gradient(90deg, transparent, #d9ab55, transparent); }
+.cristo-social__heading small { margin-top: 18px; color: rgba(255,255,255,.42); font-size: .62rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.cristo-social__card-wrap { position: absolute; z-index: 1; display: flex; flex-direction: column; align-items: center; will-change: transform, opacity; }
+.cristo-social__card-label { margin-bottom: 18px; color: rgba(217,171,85,.82); }
+.cristo-social__identity { display:flex; flex-direction:column; align-items:center; margin-top:20px; text-align:center; }
+.cristo-social__role { margin-bottom: 9px; }
+.cristo-social h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.24rem, 4vw, 3.76rem); font-weight: 400; letter-spacing: -.045em; line-height: .84; }
+.cristo-social__identity h3 { font-size:clamp(1.6rem,2.56vw,2.52rem); }
+.cristo-social__links { display: flex; gap: 11px; margin-top: 16px; opacity: 1; transform: none; }
+.cristo-social .decay-card__shade { display:none; }
+.cristo-social__links a { display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(255,255,255,.36); border-radius: 2px; background: rgba(5,5,5,.46); color: #fff; backdrop-filter: blur(10px); transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
+.cristo-social__links a:hover, .cristo-social__links a:focus-visible { border-color: #d9ab55; background: #d9ab55; color: #080604; outline: none; transform: translateY(-3px); }
+.social-icon { width: 18px; height: 18px; overflow: visible; fill: currentColor; }
+.social-icon--instagram { fill: none; stroke: currentColor; stroke-width: 2; }
+.social-icon--instagram .social-icon__dot { fill: currentColor; stroke: none; }
+
+@media (max-width: 600px) {
+  .cristo-social { height: auto; min-height: 0; overflow: visible; }
+  .cristo-social__stage { position: static; display: flex; min-height: 0; flex-direction: column; gap: 48px; padding: 88px 16px; }
+  .cristo-social__heading,
+  .cristo-social__card-wrap { position: static; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .cristo-social__heading h2 { font-size: clamp(3.04rem, 15.2vw, 4.8rem); }
+  .cristo-social__card-label { margin-bottom: 12px; font-size: .58rem; letter-spacing: .16em; }
+  .cristo-social__links { opacity: 1; transform: none; }
+}
+
+@media (hover: none) { .cristo-social__links { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cristo-social::before { animation: none; opacity: .28; }
+  .cristo-social { height: auto; min-height: 100vh; overflow: visible; }
+  .cristo-social__stage { position: static; display: flex; min-height: 100vh; flex-direction: column; gap: 70px; padding-block: 100px; }
+  .cristo-social__heading, .cristo-social__card-wrap { position: static; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .cristo-social__links { opacity: 1; transform: none; }
+}

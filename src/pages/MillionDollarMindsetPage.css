@@ -1,0 +1,29 @@
+.mindset-page { min-height: 100vh; overflow: clip; background: #030303; color: #fff7e9; }
+.mindset-hero { position: relative; display: grid; min-height: 100svh; overflow: hidden; isolation: isolate; }
+.mindset-hero__ether, .mindset-hero__shade { position: absolute; inset: 0; }
+.mindset-hero__ether { z-index: -3; background: #030303; }
+.mindset-hero__shade { z-index: -2; background: radial-gradient(circle at 68% 50%, transparent, rgba(3,3,3,.12) 30%, rgba(3,3,3,.72) 82%), linear-gradient(90deg,rgba(3,3,3,.74),transparent 52%,rgba(3,3,3,.46)); pointer-events: none; }
+.mindset-hero__layout { display: grid; width: min(1280px, calc(100% - 52px)); min-height: 100svh; margin: 0 auto; padding: 126px 0 70px; grid-template-columns: 1.2fr .8fr; gap: 5vw; align-items: center; }
+.mindset-hero__copy { position: relative; z-index: 2; }
+.mindset-hero__copy > p { color: #d9ab55; font-size: .68rem; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+.mindset-hero h1 { margin: 22px 0 28px; font-family: Georgia,"Times New Roman",serif; font-size: clamp(3.2rem,6.08vw,7.2rem); font-weight: 400; letter-spacing: -.07em; line-height: .76; text-shadow: 0 16px 48px rgba(0,0,0,.54); }
+.mindset-hero h1 em { color: #d9ab55; font-weight: 400; }
+.money-hero h1 { font-size: clamp(2.68rem, 5vw, 5.92rem); line-height: .8; }
+.mindset-hero__copy h2 { margin-bottom: 16px; color: #fff1c8; font-family: Georgia,"Times New Roman",serif; font-size: clamp(1.2rem,2vw,2rem); font-weight: 400; letter-spacing: .02em; }
+.mindset-hero__copy > span { display: block; max-width: 590px; color: rgba(255,247,233,.68); font-size: clamp(.9rem,1.15vw,1.08rem); line-height: 1.65; }
+.mindset-hero__copy > a { display: inline-flex; min-height: 54px; align-items: center; gap: 34px; margin-top: 34px; padding: 13px 22px; border: 1px solid rgba(217,171,85,.65); border-radius: 999px; color: #fff1c8; font-size: .68rem; font-weight: 900; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
+.mindset-hero__book { position: relative; z-index: 1; display: grid; margin: 0; place-items: center; animation: mindset-cover-float 4.8s ease-in-out infinite; }
+.mindset-hero__book img { position: relative; width: min(480px,37vw); max-height: 76vh; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0,0,0,.24)); }
+.mindset-hero__book figcaption { margin-top: 10px; color: rgba(255,247,233,.45); font-size: .58rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+
+@keyframes mindset-cover-float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-14px) rotate(1deg); } }
+
+@media (max-width: 820px) {
+  .mindset-hero__layout { width: min(100% - 30px,620px); padding-top: 100px; grid-template-columns: 1fr; gap: 38px; text-align: center; }
+  .mindset-hero h1 { font-size: clamp(3.12rem,13.6vw,5.76rem); }
+  .money-hero h1 { font-size: clamp(2.48rem, 10.8vw, 4.64rem); line-height: .84; }
+  .mindset-hero__copy > span { margin: 0 auto; }
+  .mindset-hero__book img { width: min(310px,76vw); max-height: 46vh; }
+}
+
+@media (prefers-reduced-motion: reduce) { .mindset-hero__book { animation: none; } }

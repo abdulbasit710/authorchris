@@ -1,0 +1,129 @@
+.custom-cursor {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor__position {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor__ring,
+.custom-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 160ms ease;
+}
+
+.custom-cursor__ring {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(229, 189, 114, 0.82);
+  background: rgba(217, 171, 85, 0.025);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.24),
+    0 0 18px rgba(217, 171, 85, 0.1);
+  backdrop-filter: blur(0.6px);
+}
+
+.custom-cursor__dot {
+  width: 6px;
+  height: 6px;
+  background: #f1c66f;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(241, 198, 111, 0.72);
+}
+
+.custom-cursor.is-interactive .custom-cursor__ring {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(255, 224, 158, 0.96);
+  background: rgba(217, 171, 85, 0.11);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.2),
+    0 0 24px rgba(217, 171, 85, 0.22);
+}
+
+.custom-cursor.is-interactive .custom-cursor__dot {
+  width: 4px;
+  height: 4px;
+  background: #fff2c8;
+}
+
+.custom-cursor.is-draggable .custom-cursor__ring {
+  width: 58px;
+  height: 38px;
+  border-radius: 999px;
+}
+
+.custom-cursor.is-pressed .custom-cursor__ring {
+  width: 30px;
+  height: 30px;
+  background: rgba(217, 171, 85, 0.2);
+}
+
+.custom-cursor.is-precision {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .custom-cursor {
+    display: block;
+  }
+
+  html.custom-cursor-enabled,
+  html.custom-cursor-enabled body,
+  html.custom-cursor-enabled a,
+  html.custom-cursor-enabled button,
+  html.custom-cursor-enabled summary,
+  html.custom-cursor-enabled [role="button"],
+  html.custom-cursor-enabled [data-cursor],
+  html.custom-cursor-enabled .curved-loop__jacket {
+    cursor: none !important;
+  }
+
+  html.custom-cursor-enabled input:not([type]),
+  html.custom-cursor-enabled input[type="text"],
+  html.custom-cursor-enabled input[type="email"],
+  html.custom-cursor-enabled input[type="password"],
+  html.custom-cursor-enabled input[type="search"],
+  html.custom-cursor-enabled input[type="tel"],
+  html.custom-cursor-enabled input[type="url"],
+  html.custom-cursor-enabled input[type="number"],
+  html.custom-cursor-enabled input[type="date"],
+  html.custom-cursor-enabled input[type="time"],
+  html.custom-cursor-enabled textarea,
+  html.custom-cursor-enabled [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  html.custom-cursor-enabled select,
+  html.custom-cursor-enabled option {
+    cursor: pointer !important;
+  }
+}

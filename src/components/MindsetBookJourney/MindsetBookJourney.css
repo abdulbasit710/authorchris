@@ -1,0 +1,145 @@
+.mindset-journey {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 28%, rgba(217, 171, 85, 0.15), transparent 25%),
+    radial-gradient(circle at 84% 70%, rgba(119, 75, 16, 0.12), transparent 28%),
+    #030303;
+  color: #fff7e9;
+}
+
+.mindset-journey::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.88), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.88));
+  content: "";
+  pointer-events: none;
+}
+
+.mindset-journey::after {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 171, 85, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 171, 85, 0.035) 1px, transparent 1px);
+  background-size: 90px 90px;
+  content: "";
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.mindset-journey__intro {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: 72vh;
+  padding: 110px 24px 70px;
+  place-content: center;
+  text-align: center;
+}
+
+.mindset-journey__intro p,
+.mindset-journey__story > p {
+  color: #d9ab55;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.mindset-journey__intro h2 {
+  margin: 22px 0 26px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.04rem, 6.4vw, 6.72rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+}
+
+.mindset-journey__intro h2 em { color: #d9ab55; font-weight: 400; }
+.mindset-journey__intro > span { color: rgba(255, 247, 233, 0.44); font-size: 0.62rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; }
+
+.mindset-journey__track {
+  --journey-book-width: min(430px, 31vw, 56vh);
+  --journey-book-height: min(573px, 41.333vw, 74.667vh);
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.mindset-journey__rail {
+  display: none;
+}
+
+.mindset-journey__progress-fill { display: block; width: 100%; height: 100%; background: linear-gradient(#fff1c8, #d9ab55); transform: scaleY(0); }
+.mindset-journey__stage { position: relative; display: grid; width: 100%; min-height: 100svh; padding: clamp(70px, 8vh, 110px) 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 7vw, 110px); align-items: center; }
+.mindset-journey__stage--2 .mindset-journey__story { order: 2; justify-self: end; }
+.mindset-journey__stage--2 .mindset-journey__marker-wrap { order: 1; }
+.mindset-journey__marker-wrap {
+  position: relative;
+  display: grid;
+  width: var(--journey-book-width);
+  height: var(--journey-book-height);
+  place-items: center;
+  justify-self: center;
+}
+
+.mindset-journey__marker { width: 100%; height: 100%; }
+.mindset-journey__moving-start { position: absolute; z-index: 10; inset: 0 auto auto 0; width: 0; height: 0; pointer-events: none; }
+.mindset-journey__moving-book {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: var(--journey-book-width);
+  height: var(--journey-book-height);
+  margin: 0;
+  place-items: center;
+  filter: drop-shadow(0 42px 72px rgba(0, 0, 0, 0.78));
+  transform-style: preserve-3d;
+}
+
+.mindset-journey__moving-book img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.mindset-journey__story {
+  position: relative;
+  width: min(480px, 100%);
+  justify-self: start;
+}
+
+.mindset-journey__story h3 { margin: 14px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 4.16vw, 4.72rem); font-weight: 400; letter-spacing: -0.055em; line-height: 0.88; }
+.mindset-journey__divider { position: relative; display: block; width: min(190px, 52%); height: 1px; margin: 28px 0 24px; background: linear-gradient(90deg, rgba(217,171,85,.72), rgba(217,171,85,.08)); }
+.mindset-journey__divider b { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: #d9ab55; transform: translate(-50%, -50%) rotate(45deg); }
+.mindset-journey__story > span { display: block; max-width: 440px; color: rgba(255, 247, 233, 0.72); font-size: clamp(0.98rem, 1.2vw, 1.15rem); line-height: 1.7; }
+.mindset-journey__story a { display: inline-flex; min-height: 56px; align-items: center; gap: 28px; margin-top: 30px; padding: 14px 24px; border: 1px solid rgba(217, 171, 85, 0.7); border-radius: 999px; background: rgba(217, 171, 85, 0.08); color: #fff1c8; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.14em; text-decoration: none; text-transform: uppercase; transition: background 0.25s ease, color 0.25s ease; }
+.mindset-journey__story a:hover { background: #d9ab55; color: #080603; }
+
+@media (max-width: 800px) {
+  .mindset-journey__track { width: min(100% - 28px, 720px); }
+  .mindset-journey__rail { left: 50%; }
+  .mindset-journey__marker-wrap,
+  .mindset-journey__moving-start,
+  .mindset-journey__moving-book { width: 250px; height: 333px; }
+  .mindset-journey__moving-start { left: 0; }
+  .mindset-journey__stage { gap: 28px; }
+  .mindset-journey__story { width: min(100%, 320px); }
+  .mindset-journey__story h3 { font-size: clamp(1.88rem, 6vw, 3.2rem); }
+}
+
+@media (max-width: 560px) {
+  .mindset-journey__marker-wrap,
+  .mindset-journey__moving-start,
+  .mindset-journey__moving-book { width: 210px; height: 280px; }
+  .mindset-journey__moving-start { left: 0; }
+  .mindset-journey__stage { min-height: 110svh; grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 28px; align-content: center; text-align: center; }
+  .mindset-journey__stage .mindset-journey__story { order: 1; justify-self: center; }
+  .mindset-journey__stage .mindset-journey__marker-wrap { order: 2; }
+  .mindset-journey__divider { margin-right: auto; margin-left: auto; }
+  .mindset-journey__story > span { margin: 0 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mindset-journey__story,
+  .mindset-journey__moving-book { opacity: 1 !important; filter: none !important; transform: none !important; }
+}

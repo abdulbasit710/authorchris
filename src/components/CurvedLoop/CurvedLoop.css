@@ -1,0 +1,23 @@
+.curved-loop { position: relative; min-height: 360px; overflow: hidden; border-top: 1px solid rgba(217,171,85,.16); background: radial-gradient(circle at 50% 68%, rgba(217,171,85,.09), transparent 38%), #030303; color: #fff7e9; }
+.curved-loop__intro { display: flex; min-height: 200px; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px 12px; text-align: center; }
+.curved-loop__intro p { color: #d9ab55; font-size: .68rem; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.curved-loop__intro h2 { margin: 12px 0 14px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.2rem, 3.6vw, 3.7rem); font-weight: 400; letter-spacing: -.035em; line-height: 1; }
+.curved-loop__intro span { color: rgba(255,255,255,.42); font-size: .62rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+.curved-loop__jacket { display: flex; height: 160px; width: 100%; align-items: flex-start; justify-content: center; overflow: hidden; cursor: grab; touch-action: pan-y; }
+.curved-loop__jacket:active { cursor: grabbing; }
+.curved-loop__svg { display: block; width: 110%; min-width: 900px; overflow: visible; user-select: none; transform: translate(-5%, -18%); }
+.curved-loop__measure { visibility: hidden; opacity: 0; pointer-events: none; }
+.curved-loop__text, .curved-loop__measure { fill: #fff7e9; font-family: Georgia, "Times New Roman", serif; font-size: 3.15rem; font-weight: 400; letter-spacing: .035em; text-transform: uppercase; }
+.curved-loop__text { paint-order: stroke fill; stroke: rgba(217,171,85,.18); stroke-width: 1px; }
+
+@media (max-width: 700px) {
+  .curved-loop { min-height: 330px; }
+  .curved-loop__intro { min-height: 190px; padding: 28px 18px 10px; }
+  .curved-loop__jacket { height: 140px; }
+  .curved-loop__svg { width: 190%; min-width: 820px; transform: translate(-24%, -20%); }
+  .curved-loop__text, .curved-loop__measure { font-size: 2.8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curved-loop__intro, .curved-loop__jacket { opacity: 1 !important; transform: none !important; }
+}

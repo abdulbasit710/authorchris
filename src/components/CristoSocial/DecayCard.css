@@ -1,0 +1,20 @@
+.decay-card {
+  position: relative;
+  width: min(var(--decay-width), 84vw);
+  height: min(var(--decay-height), 68vh);
+  min-height: 440px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 171, 85, 0.38);
+  border-radius: 2px;
+  background: #111;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.74);
+  will-change: transform;
+}
+
+.decay-card__svg { display: block; width: 100%; height: 100%; }
+.decay-card__shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.2) 55%, rgba(0,0,0,.95)); pointer-events: none; }
+.decay-card__content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(24px, 5vw, 46px); }
+
+@media (max-width: 600px) {
+  .decay-card { width: min(var(--decay-width), 88vw); min-height: 400px; }
+}
