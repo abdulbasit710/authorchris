@@ -236,8 +236,7 @@
 
 @media (max-width: 900px) {
   .book-collection {
-    min-height: auto;
-    overflow: visible;
+    display: none;
   }
 
   .book-collection__content {
