@@ -24,8 +24,8 @@ body {
   color: #ffffff;
 }
 
-html { width:100%; max-width:100%; overflow-x:hidden; scroll-behavior:smooth; scroll-padding-top:76px; }
-body, #root { width:100%; max-width:100%; overflow-x:hidden; }
+html { width:100%; max-width:100%; overflow-x:clip; scroll-behavior:smooth; scroll-padding-top:76px; }
+body, #root { width:100%; max-width:100%; overflow-x:clip; }
 img { display:block; height:auto; }
 a,button { -webkit-tap-highlight-color:rgba(217,171,85,.18); }
 
@@ -120,6 +120,5 @@ canvas {
   }
 
   p { line-height: 1.62; }
-  main { overflow: clip; }
   input, select, textarea { font-size: 16px !important; }
 }
