@@ -335,9 +335,15 @@
 }
 
 @media (max-width: 640px) {
+  .about-christopher { overflow: visible; }
+
   .about-kicker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     gap: 10px;
-    padding-top: 52px;
+    padding: 28px 16px 0;
     font-size: 0.62rem;
     letter-spacing: 0.14em;
   }
@@ -348,60 +354,99 @@
 
   .gallery-wrap {
     display: flex;
-    height: auto;
-    min-height: 0;
-    flex-direction: column;
-    gap: 30px;
-    padding: 24px 18px 82px;
+    width: 100%;
+    height: 100svh;
+    min-height: 700px;
+    padding: 72px 14px 18px;
   }
 
   .about-bento {
+    display: grid;
+    width: 100%;
+    height: calc(100svh - 104px);
+    min-height: 590px;
+    gap: 6px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-bento .about-bento__item,
+  .about-bento .about-bento__item:nth-child(n) {
+    display: block;
+    grid-area: auto;
+  }
+
+  .about-bento .about-bento__item:nth-child(1),
+  .about-bento .about-bento__item:nth-child(3) {
+    grid-row: span 2;
+  }
+
+  .about-bento .about-bento__item:nth-child(7),
+  .about-bento .about-bento__item:nth-child(8) {
     display: none;
   }
 
+  .about-bento__item img,
+  .about-bento .about-bento__item:nth-child(n) img {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    object-position: 50% 18%;
+  }
+
   .about-focus__image {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: min(340px, 88vw);
-    transform: none;
-    opacity: 1;
-    visibility: visible;
+    position: absolute;
+    top: 29%;
+    left: 50%;
+    width: min(72vw, 310px);
+    aspect-ratio: 4 / 5;
+    transform: translate(-50%, -50%);
   }
 
   .about-focus__copy {
-    position: relative;
+    position: absolute;
     top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: min(100%, 520px);
+    right: 14px;
+    bottom: 18px;
+    left: 14px;
+    width: auto;
+    padding: 18px 18px 16px;
+    border: 1px solid rgba(217,171,85,.32);
+    background: linear-gradient(145deg,rgba(10,8,5,.94),rgba(2,2,2,.9));
+    box-shadow: 0 24px 70px rgba(0,0,0,.62);
     transform: none;
-    opacity: 1;
-    visibility: visible;
     text-align: center;
+    backdrop-filter: blur(14px);
   }
 
   .about-focus__copy .about-eyebrow {
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    font-size: .58rem;
   }
 
   .about-focus__copy h2 {
-    margin-bottom: 12px;
-    font-size: clamp(1.6rem, 8vw, 2.68rem);
+    margin-bottom: 9px;
+    font-size: clamp(1.55rem, 7.2vw, 2.25rem);
   }
 
   .about-focus__copy p:not(.about-eyebrow) {
-    font-size: 0.94rem;
-    line-height: 1.55;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: .82rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
   }
 
   .about-focus__cta {
-    width: auto;
-    min-height: 48px;
-    margin-top: 18px;
-    font-size: 0.68rem;
+    width: min(100%, 290px);
+    min-height: 44px;
+    margin-top: 13px;
+    padding-block: 9px;
+    font-size: 0.62rem;
   }
 
 }
