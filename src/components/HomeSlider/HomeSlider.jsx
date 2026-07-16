@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import gsap from "gsap";
 import { Observer } from "gsap/Observer";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import "./HomeSlider.css";
@@ -10,7 +11,7 @@ import millionDollarMindsetHero from "../../assets/images/christopher-million-do
 import powerOfNewRealEstateMoneyHero from "../../assets/images/christopher-power-of-new-real-estate-money-hero.png";
 import realEstateLegacyHero from "../../assets/images/real-estate-legacy-sunrise-hero.png";
 
-gsap.registerPlugin(Observer, useGSAP);
+gsap.registerPlugin(Observer, ScrollTrigger, useGSAP);
 
 const slides = [
   {
@@ -50,15 +51,35 @@ function HomeSlider() {
     () => {
       const wrapper = wrapperRef.current;
       const sections = gsap.utils.toArray(".home-slide", wrapper);
+      const track = wrapper.querySelector(".home-slider__track");
       let observer;
       let splitHeadings = [];
 
       const useNativeScroll = window.matchMedia("(max-width: 900px)").matches;
       if (useNativeScroll) {
-        // Mobile is a native vertical story. Do not let GSAP write any inline
-        // visibility or transform state: desktop animation state can otherwise
-        // leave later slides black after resizing or restoring a browser tab.
-        return undefined;
+        const horizontalTween = gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.65,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        const refresh = () => ScrollTrigger.refresh();
+        const images = gsap.utils.toArray(".home-slide__image", wrapper);
+        images.forEach((image) => {
+          if (!image.complete) image.addEventListener("load", refresh, { once: true });
+        });
+
+        return () => {
+          images.forEach((image) => image.removeEventListener("load", refresh));
+          horizontalTween.scrollTrigger?.kill();
+          horizontalTween.kill();
+        };
       }
 
       const showFallbackSlide = () => {
@@ -162,8 +183,9 @@ function HomeSlider() {
 
   return (
     <section className="home-slider" id="top" ref={wrapperRef} aria-label="Christopher DiCristo homepage slider">
-      {slides.map((slide, index) => (
-        <article className={`home-slide home-slide--${index + 1}`} key={slide.heading} aria-label={`Slide ${index + 1}`}>
+      <div className="home-slider__track">
+        {slides.map((slide, index) => (
+          <article className={`home-slide home-slide--${index + 1}`} key={slide.heading} aria-label={`Slide ${index + 1}`}>
           <div className="outer">
             <div className="inner">
               <div
@@ -192,8 +214,9 @@ function HomeSlider() {
               </p>
             </div>
           </div>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
 
       <div className="scroll-indicator" aria-hidden="true">
         <span />
