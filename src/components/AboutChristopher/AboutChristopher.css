@@ -407,9 +407,9 @@
 
   .about-focus__copy {
     position: absolute;
-    top: auto;
+    top: 49%;
     right: 14px;
-    bottom: 18px;
+    bottom: auto;
     left: 14px;
     width: auto;
     padding: 18px 18px 16px;
