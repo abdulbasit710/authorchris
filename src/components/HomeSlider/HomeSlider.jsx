@@ -57,17 +57,40 @@ function HomeSlider() {
 
       const useNativeScroll = window.matchMedia("(max-width: 900px)").matches;
       if (useNativeScroll) {
-        const horizontalTween = gsap.to(track, {
-          x: () => -(track.scrollWidth - window.innerWidth),
-          ease: "none",
+        gsap.set(sections, { autoAlpha: 0, zIndex: 0 });
+        gsap.set(sections[0], { autoAlpha: 1, zIndex: 2 });
+
+        const mobileTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: wrapper,
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.65,
+            scrub: 0.45,
+            snap: {
+              snapTo: 1 / (sections.length - 1),
+              duration: { min: 0.16, max: 0.34 },
+              delay: 0.04,
+              ease: "power2.inOut",
+            },
             invalidateOnRefresh: true,
           },
         });
+
+        sections.slice(1).forEach((section, index) => {
+          const previous = sections[index];
+          const position = index + 0.72;
+          mobileTimeline
+            .to(previous, { autoAlpha: 0, scale: 0.985, duration: 0.28, ease: "power2.in" }, position)
+            .set(previous, { zIndex: 0 })
+            .set(section, { zIndex: 2 }, position)
+            .fromTo(
+              section,
+              { autoAlpha: 0, scale: 1.025 },
+              { autoAlpha: 1, scale: 1, duration: 0.34, ease: "power2.out" },
+              position
+            );
+        });
+        mobileTimeline.to({}, { duration: 0.72 });
 
         const refresh = () => ScrollTrigger.refresh();
         const images = gsap.utils.toArray(".home-slide__image", wrapper);
@@ -77,8 +100,8 @@ function HomeSlider() {
 
         return () => {
           images.forEach((image) => image.removeEventListener("load", refresh));
-          horizontalTween.scrollTrigger?.kill();
-          horizontalTween.kill();
+          mobileTimeline.scrollTrigger?.kill();
+          mobileTimeline.kill();
         };
       }
 
