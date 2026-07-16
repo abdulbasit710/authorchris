@@ -149,6 +149,15 @@
 @media (max-width: 900px) {
   .author-gallery { overflow-x: clip; }
 
+  /* The landscape cards use only the upper portion of the pinned portrait
+     viewport. Let the next section enter beneath the final card instead of
+     leaving half a screen of empty black space. */
+  .author-gallery + .about-christopher {
+    position: relative;
+    z-index: 3;
+    margin-top: -52svh;
+  }
+
   .author-gallery .plain {
     min-height: 30vh;
     padding-top: 42px;
