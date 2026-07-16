@@ -235,10 +235,17 @@
 .book-collection__page-link:focus-visible { border-color: #fff7e9; color: #fff7e9; }
 
 @media (max-width: 900px) {
+  .book-collection {
+    min-height: auto;
+    overflow: visible;
+  }
+
   .book-collection__content {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 44px;
     align-items: start;
+    min-height: auto;
+    padding-block: 84px;
   }
 
   .book-collection__left h2 {
@@ -250,20 +257,35 @@
     width: auto;
   }
 
+  .book-collection__nav { display: none; }
+
   .book-collection__right {
-    min-height: 560px;
+    display: grid;
+    min-height: 0;
+    gap: 28px;
+    perspective: none;
   }
 
   .book-collection__slide {
+    position: relative;
+    inset: auto;
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 26px;
     justify-items: center;
+    padding: 34px 22px 38px;
+    border: 1px solid rgba(217, 171, 85, 0.24);
+    background: linear-gradient(145deg, rgba(217,171,85,.07), rgba(255,255,255,.015));
+    box-shadow: 0 24px 60px rgba(0,0,0,.3);
     text-align: center;
+    visibility: visible;
+    opacity: 1;
   }
 
   .book-collection__mockup {
-    width: min(280px, 62vw);
+    width: min(260px, 62vw);
   }
+
+  .book-collection__mockup img { transform: none; }
 
   .book-collection__detail span {
     max-width: 520px;
@@ -283,7 +305,7 @@
     font-size: clamp(1.55rem, 8vw, 2.5rem);
   }
 
-  .book-collection__right {
-    min-height: 520px;
-  }
+  .book-collection__content { padding-block: 68px; }
+  .book-collection__slide { padding-inline: 18px; }
+  .book-collection__detail h3 { font-size: clamp(1.65rem, 7.6vw, 2.35rem); }
 }

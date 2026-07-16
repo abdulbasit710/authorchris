@@ -29,6 +29,11 @@ function BookCollection() {
       const slides = gsap.utils.toArray(".book-collection__slide", sectionRef.current);
       const fill = sectionRef.current.querySelector(".book-collection__fill");
 
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        gsap.set(slides, { clearProps: "transform,opacity,visibility" });
+        return undefined;
+      }
+
       gsap.set(slides, { autoAlpha: 0, y: 34, scale: 0.92, rotateY: -10 });
       gsap.set(slides[0], { autoAlpha: 1, y: 0, scale: 1, rotateY: 0 });
       gsap.set(items[0], { color: "#ffe8ac" });

@@ -51,6 +51,11 @@ function AboutChristopher() {
       const focusCta = sectionRef.current.querySelector(".about-focus__cta");
       const focusLine = sectionRef.current.querySelector(".about-focus__line");
 
+      if (window.matchMedia("(max-width: 640px)").matches) {
+        gsap.set([focusImage, focusCopy, focusCta], { clearProps: "transform,opacity,visibility,filter" });
+        return undefined;
+      }
+
       gsap.set([focusImage, focusCopy, focusCta, focusLine], { autoAlpha: 0 });
       gsap.set(focusImage, { scale: 0.72, y: 34 });
       gsap.set(focusCopy, { x: 72 });

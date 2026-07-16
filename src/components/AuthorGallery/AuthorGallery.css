@@ -169,29 +169,29 @@
   }
 
   .horiz-gallery-strip {
-    width:100%;
-    gap: 22px;
-    padding: 36px 20px 64px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    scroll-padding-inline:20px;
-    overscroll-behavior-inline:contain;
-    -webkit-overflow-scrolling:touch;
+    display: grid;
+    width:min(100% - 32px, 620px);
+    gap: 28px;
+    margin-inline: auto;
+    padding: 40px 0 72px;
+    overflow: visible;
   }
 
   .horiz-gallery-wrapper { min-height:0; overflow:visible; }
 
   .project-wrap {
-    flex-basis:min(82vw,380px);
-    scroll-snap-align:center;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(217,171,85,.2);
+    background: rgba(255,255,255,.018);
   }
 
   .project-wrap img { aspect-ratio:4/3; object-fit:contain; background:#080808; }
 
   .project-wrap figcaption {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
+    gap: 14px;
+    padding: 16px 4px 6px;
     font-size: 0.72rem;
+    line-height: 1.45;
   }
 }

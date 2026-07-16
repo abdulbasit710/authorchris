@@ -38,6 +38,15 @@ function VentureScroll({ showIntro = true, limit = ventures.length }) {
   useGSAP(() => {
     const panels = gsap.utils.toArray(".venture-scroll__panel", sectionRef.current);
 
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      panels.forEach((panel) => {
+        gsap.set(panel.querySelectorAll(".venture-scroll__brand, .venture-scroll__copy, .venture-scroll__rule span"), {
+          clearProps: "transform,opacity,visibility",
+        });
+      });
+      return undefined;
+    }
+
     panels.forEach((panel) => {
       const logo = panel.querySelector(".venture-scroll__brand");
       const copy = panel.querySelector(".venture-scroll__copy");

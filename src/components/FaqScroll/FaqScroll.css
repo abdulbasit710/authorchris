@@ -31,12 +31,13 @@
 .faq-scroll__item.is-active .faq-scroll__answer p { transform: translateY(0); }
 
 @media (max-width: 800px) {
-  .faq-scroll { height: 100vh; min-height: 680px; overflow: hidden; padding: 0; }
-  .faq-scroll__layout { grid-template-columns: 1fr; gap: 58px; }
+  .faq-scroll { height: auto; min-height: 0; overflow: hidden; padding: 82px 0; }
+  .faq-scroll__layout { width: min(100% - 32px, 620px); height: auto; grid-template-columns: 1fr; gap: 42px; }
   .faq-scroll__layout { transform: none; }
   .faq-scroll__header { text-align: center; }
-  .faq-scroll__title { margin-bottom: 28px; font-size: clamp(3.2rem,14.4vw,5.2rem); }
+  .faq-scroll__title { margin: 16px 0 24px; font-size: clamp(2.7rem,13vw,4.5rem); }
   .faq-scroll__counter { justify-content: center; }
+  .faq-scroll__hint { display: none; }
   .faq-scroll__questions { padding-left: 18px; }
   .faq-scroll__item button { grid-template-columns: 28px 1fr 24px; gap: 10px; padding-block: 20px; }
   .faq-scroll__answer p { padding-left: 38px; padding-right: 20px; }

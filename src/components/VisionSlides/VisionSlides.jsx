@@ -39,6 +39,11 @@ function VisionSlides() {
   useGSAP(() => {
     const panels = gsap.utils.toArray(".vision-slides__panel", wrapperRef.current);
 
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      gsap.set(panels, { clearProps: "transform,opacity,visibility,filter" });
+      return undefined;
+    }
+
     panels.slice(0, -1).forEach((panel) => {
       const content = panel.querySelector(".vision-slides__inner");
 

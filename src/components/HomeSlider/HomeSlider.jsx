@@ -55,8 +55,9 @@ function HomeSlider() {
 
       const useNativeScroll = window.matchMedia("(max-width: 900px)").matches;
       if (useNativeScroll) {
-        gsap.set(sections, { clearProps: "all", autoAlpha: 1 });
-        gsap.set(gsap.utils.toArray(".outer, .inner, .bg, .slide-content", wrapper), { clearProps: "all" });
+        // Mobile is a native vertical story. Do not let GSAP write any inline
+        // visibility or transform state: desktop animation state can otherwise
+        // leave later slides black after resizing or restoring a browser tab.
         return undefined;
       }
 
@@ -168,9 +169,18 @@ function HomeSlider() {
               <div
                 className="bg"
                 style={{
-                  backgroundImage: `${slide.image ? `url(${slide.image}), ` : ""}${slide.fallback}`,
+                  background: slide.fallback,
                 }}
-              />
+              >
+                <img
+                  className="home-slide__image"
+                  src={slide.image}
+                  alt=""
+                  aria-hidden="true"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                />
+              </div>
               <div className="slide-content">
                 <p className="slide-eyebrow">{slide.eyebrow}</p>
                 <h1 className="section-heading">{slide.heading}</h1>
