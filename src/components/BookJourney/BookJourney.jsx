@@ -21,11 +21,6 @@ function BookJourney() {
     const copyBlocks = gsap.utils.toArray(".book-journey__copy", sectionRef.current);
     let context;
 
-    if (window.matchMedia("(max-width: 900px)").matches) {
-      gsap.set(copyBlocks, { clearProps: "all" });
-      return undefined;
-    }
-
     const setBook = (index) => {
       if (activeRef.current === index) return;
       activeRef.current = index;

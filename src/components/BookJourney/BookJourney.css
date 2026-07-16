@@ -28,21 +28,24 @@
   .book-journey__container,.book-journey__moving-book { width:330px; height:440px; }
 }
 @media (max-width:900px) {
-  .book-journey__container,.book-journey__moving-book { width:190px; height:253px; }
-  .book-journey__container--initial { left:calc(56% - 95px); }
-  .book-journey__container--second { left:calc(44% - 95px); }
-  .book-journey__container--third { right:calc(44% - 95px); }
-  .book-journey__container--fourth { left:calc(44% - 95px); }
-  .book-journey__copy { width:min(310px,42vw); }
-  .book-journey__copy h2 { font-size:clamp(1.6rem,4.8vw,2.8rem); }
-}
-@media (max-width:900px) {
-  .book-journey__spacer { height:auto; padding:72px 20px 30px; text-align:center; }
-  .book-journey__main { display:grid; width:min(100% - 32px,520px); height:auto; gap:72px; padding:20px 0 90px; }
-  .book-journey__container { display:none; }
-  .book-journey__copy,.book-journey__copy--1,.book-journey__copy--2,.book-journey__copy--3,.book-journey__copy--4 { position:relative; top:auto; right:auto; left:auto; width:100%; text-align:center; opacity:1!important; transform:none!important; }
-  .book-journey__mobile-cover { display:block; width:min(68vw,270px); height:340px; margin:0 auto 30px; object-fit:contain; filter:drop-shadow(0 22px 28px rgba(0,0,0,.5)); }
-  .book-journey__copy h2 { font-size:clamp(1.6rem,8vw,2.68rem); }
+  .book-journey__spacer { height:14svh; padding:38px 20px 10px; text-align:center; }
+  .book-journey__spacer--final { height:2svh; padding:0; }
+  .book-journey__main { display:block; width:min(100% - 28px,520px); height:400svh; padding:0; }
+  .book-journey__container,.book-journey__moving-book { display:grid; width:min(46vw,190px); height:min(61.3vw,253px); }
+  .book-journey__container--initial { top:3%; left:50%; transform:translateX(-50%); }
+  .book-journey__container--second { top:28%; left:50%; transform:translateX(-50%); }
+  .book-journey__container--third { top:53%; right:auto; left:50%; transform:translateX(-50%); }
+  .book-journey__container--fourth { top:76.8%; left:50%; transform:translateX(-50%); }
+  .book-journey__copy,.book-journey__copy--1,.book-journey__copy--2,.book-journey__copy--3,.book-journey__copy--4 { position:absolute; right:10px; left:10px; width:auto; text-align:center; }
+  .book-journey__copy--1 { top:14%; }
+  .book-journey__copy--2 { top:39%; }
+  .book-journey__copy--3 { top:64%; }
+  .book-journey__copy--4 { top:88%; }
+  .book-journey__mobile-cover { display:none; }
+  .book-journey__copy h2 { margin-bottom:12px; font-size:clamp(1.65rem,7.6vw,2.55rem); }
+  .book-journey__copy p { font-size:.62rem; }
+  .book-journey__copy span { font-size:.92rem; line-height:1.55; }
   .book-journey__copy span { margin-inline:auto; }
-  .book-journey__copy a { min-height:48px; }
+  .book-journey__copy a { min-height:46px; margin-top:16px; font-size:.65rem; }
+  .book-journey__moving-book { filter:drop-shadow(0 22px 34px rgba(0,0,0,.58)); }
 }
