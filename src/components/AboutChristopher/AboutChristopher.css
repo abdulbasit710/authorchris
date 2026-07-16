@@ -407,7 +407,7 @@
 
   .about-focus__copy {
     position: absolute;
-    top: 49%;
+    top: calc(49% + 18px);
     right: 14px;
     bottom: auto;
     left: 14px;
