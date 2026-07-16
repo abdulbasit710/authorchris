@@ -28,8 +28,36 @@ function AuthorGallery() {
       const wrapper = galleryRef.current.querySelector(".horiz-gallery-wrapper");
       const strip = galleryRef.current.querySelector(".horiz-gallery-strip");
       if (window.matchMedia("(max-width: 900px)").matches) {
-        gsap.set(strip, { clearProps: "transform" });
-        return undefined;
+        const portfolio = galleryRef.current.querySelector("#portfolio");
+        const mobileTween = gsap.to(strip, {
+          x: () => -(strip.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: portfolio,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.55,
+            snap: {
+              snapTo: 1 / (galleryItems.length - 1),
+              duration: { min: 0.16, max: 0.34 },
+              delay: 0.04,
+              ease: "power2.inOut",
+            },
+            invalidateOnRefresh: true,
+          },
+        });
+
+        const refresh = () => ScrollTrigger.refresh();
+        const images = gsap.utils.toArray("img", galleryRef.current);
+        images.forEach((image) => {
+          if (!image.complete) image.addEventListener("load", refresh, { once: true });
+        });
+
+        return () => {
+          images.forEach((image) => image.removeEventListener("load", refresh));
+          mobileTween.scrollTrigger?.kill();
+          mobileTween.kill();
+        };
       }
       const getScrollLength = () => Math.max(0, strip.scrollWidth - window.innerWidth);
 
