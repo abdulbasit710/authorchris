@@ -4,7 +4,6 @@ import AuthorGallery from "./components/AuthorGallery/AuthorGallery";
 import BookCollection from "./components/BookCollection/BookCollection";
 import BookJourney from "./components/BookJourney/BookJourney";
 import HomeSlider from "./components/HomeSlider/HomeSlider";
-import LogoScroll from "./components/LogoScroll/LogoScroll";
 import VentureScroll from "./components/VentureScroll/VentureScroll";
 import VisionSlides from "./components/VisionSlides/VisionSlides";
 import CristoSocial from "./components/CristoSocial/CristoSocial";
@@ -28,7 +27,6 @@ function HomePage() {
       <AboutChristopher />
       <BookCollection />
       <BookJourney />
-      <LogoScroll />
       <VentureScroll />
       <CristoSocial />
       <CurvedLoopSection />
@@ -38,11 +36,12 @@ function HomePage() {
 }
 
 function App() {
-  const isAboutPage = window.location.pathname.replace(/\/+$/, "") === "/about";
-  const isMindsetPage = window.location.pathname.replace(/\/+$/, "") === "/books/the-million-dollar-mindset";
-  const isMoneyPage = window.location.pathname.replace(/\/+$/, "") === "/books/the-power-of-new-real-estate-money";
-  const isComingSoonPage = window.location.pathname.replace(/\/+$/, "") === "/books/coming-soon";
-  const isContactPage = window.location.pathname.replace(/\/+$/, "") === "/contact";
+  const currentPath = window.location.pathname.replace(/\/+$/, "");
+  const isAboutPage = currentPath === "/about";
+  const isMindsetPage = currentPath === "/books/the-million-dollar-mindset";
+  const isMoneyPage = currentPath === "/books/the-power-of-new-real-estate-money";
+  const isComingSoonPage = currentPath === "/books/coming-soon";
+  const isContactPage = currentPath === "/contact";
 
   return (
     <>

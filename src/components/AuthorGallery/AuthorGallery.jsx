@@ -59,20 +59,27 @@ function AuthorGallery() {
           mobileTween.kill();
         };
       }
-      const getScrollLength = () => Math.max(0, strip.scrollWidth - window.innerWidth);
+      const getScrollLength = () =>
+        Math.max(0, strip.scrollWidth - window.innerWidth + Math.min(72, window.innerWidth * 0.05));
 
-      const tween = gsap.to(strip, {
-        x: () => -getScrollLength(),
-        ease: "none",
+      const tween = gsap.timeline({
         scrollTrigger: {
           trigger: wrapper,
           pin: wrapper,
-          scrub: 1,
+          scrub: 0.65,
           start: "center center",
-          end: () => `+=${strip.scrollWidth}`,
+          end: () => `+=${strip.scrollWidth * 1.15}`,
           invalidateOnRefresh: true,
         },
       });
+
+      tween
+        .to(strip, {
+          x: () => -getScrollLength(),
+          duration: 0.84,
+          ease: "none",
+        })
+        .to({}, { duration: 0.16 });
 
       const refreshOnLoad = () => ScrollTrigger.refresh();
       const images = gsap.utils.toArray("img", galleryRef.current);

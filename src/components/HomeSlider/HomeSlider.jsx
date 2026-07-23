@@ -10,11 +10,20 @@ import slideOne from "../../assets/images/christopher-writing-office-hero.png";
 import millionDollarMindsetHero from "../../assets/images/christopher-million-dollar-mindset-hero.png";
 import powerOfNewRealEstateMoneyHero from "../../assets/images/christopher-power-of-new-real-estate-money-hero.png";
 import realEstateLegacyHero from "../../assets/images/real-estate-legacy-sunrise-hero.png";
+import websiteLogo from "../../assets/logo/real-estate-beyond-limits-loader.png";
 
 gsap.registerPlugin(Observer, ScrollTrigger, useGSAP);
 
 const slides = [
   {
+    kind: "intro",
+    heading: "Real Estate Beyond Limits",
+    copy: "Books, real-world insight, and proven principles for building the mindset, business, and legacy that take you beyond ordinary limits.",
+    image: websiteLogo,
+    fallback: "radial-gradient(circle at 50% 42%, #1b1509 0%, #090806 34%, #020202 72%)",
+  },
+  {
+    kind: "author",
     eyebrow: "AUTHOR · ENTREPRENEUR · REAL ESTATE & MORTGAGE LEADER",
     heading: "Christopher DiCristo",
     copy: "From South Philadelphia to the United States Marine Corps, real estate development, mortgage banking, and the founding of Loormax Lending Franchise Corporation.",
@@ -208,7 +217,7 @@ function HomeSlider() {
     <section className="home-slider" id="top" ref={wrapperRef} aria-label="Christopher DiCristo homepage slider">
       <div className="home-slider__track">
         {slides.map((slide, index) => (
-          <article className={`home-slide home-slide--${index + 1}`} key={slide.heading} aria-label={`Slide ${index + 1}`}>
+          <article className={`home-slide home-slide--${index + 1} home-slide--${slide.kind || "story"}`} key={slide.heading} aria-label={`Slide ${index + 1} of ${slides.length}`}>
           <div className="outer">
             <div className="inner">
               <div
@@ -227,7 +236,7 @@ function HomeSlider() {
                 />
               </div>
               <div className="slide-content">
-                <p className="slide-eyebrow">{slide.eyebrow}</p>
+                {slide.eyebrow && <p className="slide-eyebrow">{slide.eyebrow}</p>}
                 <h1 className="section-heading">{slide.heading}</h1>
                 <p className="slide-copy">{slide.copy}</p>
               </div>

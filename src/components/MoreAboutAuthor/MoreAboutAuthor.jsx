@@ -11,16 +11,19 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const chapters = [
   {
-    title: "Built by discipline.",
-    text: "After losing his father at nine, Christopher learned early that a life is measured by what you build—not by what you are given. The United States Marine Corps turned that lesson into a lifelong standard.",
+    label: "His beginnings",
+    title: "South Philadelphia shaped him.",
+    text: "Christopher DiCristo grew up in South Philadelphia and lost his father when he was only nine years old. Responsibility arrived early. Those formative years—and his service in the United States Marine Corps—shaped the discipline, resilience, and work ethic that continue to guide him.",
   },
   {
-    title: "Proven through rebuilding.",
-    text: "Business failure did not end the story. Christopher rebuilt through real estate, development, and mortgage leadership—creating communities, growing teams, and turning experience into opportunity for others.",
+    label: "His career",
+    title: "A builder and mortgage leader.",
+    text: "Christopher built his career in real estate development and mortgage banking. He developed communities across greater Philadelphia, helped grow American Mortgage to 26 operating offices, and later founded Loormax Lending Franchise Corporation to create new opportunities for professionals and borrowers.",
   },
   {
-    title: "Focused on lasting impact.",
-    text: "Surviving terminal cancer sharpened his purpose: share the practical principles that helped him build, rebuild, survive, and lead so the next generation can move forward with courage.",
+    label: "His purpose",
+    title: "An author sharing lived experience.",
+    text: "After more than five decades in business—and after surviving terminal cancer—Christopher began turning his experience into books, mentorship, and practical guidance. His purpose is simple: help others believe in themselves, recognize opportunity, and build a legacy with courage and integrity.",
   },
 ];
 
@@ -72,8 +75,8 @@ function MoreAboutAuthor() {
 
       <header className="more-author__header">
         <p className="more-author__eyebrow">More About Chris</p>
-        <h2 id="more-author-title">A life built<br /><em>beyond limits.</em></h2>
-        <span>Scroll through the experiences behind the leadership</span>
+        <h2 id="more-author-title">Meet the man<br /><em>behind the mission.</em></h2>
+        <span>Christopher DiCristo · Author · Entrepreneur · Real estate and mortgage leader</span>
       </header>
 
       <div className="more-author__story">
@@ -89,7 +92,7 @@ function MoreAboutAuthor() {
           {chapters.map((chapter, index) => (
             <article className="more-author__panel" key={chapter.title}>
               <p className="more-author__number">{String(index + 1).padStart(2, "0")}</p>
-              <p className="more-author__chapter-label">Chapter {String(index + 1).padStart(2, "0")}</p>
+              <p className="more-author__chapter-label">{chapter.label}</p>
               <h3>{chapter.title}</h3>
               <p className="more-author__text">{chapter.text}</p>
             </article>

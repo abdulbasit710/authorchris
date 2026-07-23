@@ -97,8 +97,8 @@ function CustomCursor() {
     };
 
     const render = () => {
-      ringX += (pointerX - ringX) * 0.16;
-      ringY += (pointerY - ringY) * 0.16;
+      ringX += (pointerX - ringX) * 0.58;
+      ringY += (pointerY - ringY) * 0.58;
       moveElement(ring, ringX, ringY);
       frameId = window.requestAnimationFrame(render);
     };
