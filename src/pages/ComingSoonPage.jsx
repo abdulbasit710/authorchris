@@ -22,7 +22,7 @@ const upcomingBooks = [
   {
     number: "04",
     label: "Book Four",
-    title: "Land to Legacy",
+    title: "Land Development, New Home Builder and Real Estate Investments",
     status: "Coming soon",
     image: bookFour,
     copy: "A guide to building wealth through land development, builder strategy, and real estate investing with a long-term legacy mindset.",
@@ -32,7 +32,7 @@ const upcomingBooks = [
 const comingFaqs = [
   {
     question: "Which Christopher DiCristo books are coming next?",
-    answer: "Real Estate Marketing Domination and Land to Legacy are Christopher's next announced books. Release information will be shared when available.",
+    answer: "Real Estate Marketing Domination and Land Development, New Home Builder and Real Estate Investments are Christopher's next announced books. Release information will be shared when available.",
   },
   {
     question: "When will the next book be released?",
@@ -227,7 +227,7 @@ function ComingSoonPage() {
               <select name="interest" defaultValue="All upcoming books">
                 <option>All upcoming books</option>
                 <option>Real Estate Marketing Domination</option>
-                <option>Land to Legacy</option>
+                <option>Land Development, New Home Builder and Real Estate Investments</option>
                 <option>Bulk and team orders</option>
                 <option>Speaking and launch events</option>
               </select>

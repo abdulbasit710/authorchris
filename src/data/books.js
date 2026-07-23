@@ -33,7 +33,7 @@ const books = [
   },
   {
     id: "book-four",
-    title: "Land to Legacy",
+    title: "Land Development, New Home Builder and Real Estate Investments",
     eyebrow: "Book Four",
     image: bookFour,
     copy: "How to build wealth through land development, builder and real estate investing—from vision to lasting legacy.",

@@ -18,6 +18,7 @@ const slides = [
   {
     kind: "intro",
     heading: "Real Estate Beyond Limits",
+    hideHeading: true,
     copy: "Books, real-world insight, and proven principles for building the mindset, business, and legacy that take you beyond ordinary limits.",
     image: websiteLogo,
     fallback: "radial-gradient(circle at 50% 42%, #1b1509 0%, #090806 34%, #020202 72%)",
@@ -237,7 +238,9 @@ function HomeSlider() {
               </div>
               <div className="slide-content">
                 {slide.eyebrow && <p className="slide-eyebrow">{slide.eyebrow}</p>}
-                <h1 className="section-heading">{slide.heading}</h1>
+                <h1 className={`section-heading${slide.hideHeading ? " section-heading--hidden" : ""}`}>
+                  {slide.heading}
+                </h1>
                 <p className="slide-copy">{slide.copy}</p>
               </div>
               <p className="slide-count">
@@ -252,7 +255,7 @@ function HomeSlider() {
 
       <div className="scroll-indicator" aria-hidden="true">
         <span />
-        Scroll
+        Scroll down
       </div>
     </section>
   );
