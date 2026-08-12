@@ -166,7 +166,7 @@ function MindsetBookJourney({
               <i className="mindset-journey__divider" aria-hidden="true"><b /></i>
               <span>{movement.copy}</span>
               {index === movementItems.length - 1 && (
-                <a href="#book-contact">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
+                <a href="https://amzn.eu/d/05jS7CSj" target="_blank" rel="noopener noreferrer">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
               )}
             </div>
 

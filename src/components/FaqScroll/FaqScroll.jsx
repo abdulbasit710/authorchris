@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: "Who is Christopher DiCristo?",
-    answer: "Christopher is an author, entrepreneur, former United States Marine, real estate developer, mortgage leader, speaker, coach, cancer survivor, and founder of Loormax Lending Franchise Corporation.",
+    answer: "Christopher is an author, entrepreneur, United States Marine, real estate developer, mortgage leader, speaker, coach, cancer survivor, and founder of Loormax Lending Franchise Corporation.",
   },
   {
     question: "What is The Million-Dollar Mindset about?",

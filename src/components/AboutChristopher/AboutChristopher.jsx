@@ -123,7 +123,7 @@ function AboutChristopher() {
           <p className="about-eyebrow">FROM SOUTH PHILLY TO CEO</p>
           <h2>He Teaches What He Has Lived.</h2>
           <p>
-            A former United States Marine, Christopher rebuilt after losing his first
+            A United States Marine, Christopher rebuilt after losing his first
             business, developed communities across greater Philadelphia, helped grow
             American Mortgage to 26 offices, survived terminal cancer, and went on to
             found Loormax Lending Franchise Corporation.
