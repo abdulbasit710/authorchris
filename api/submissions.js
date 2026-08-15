@@ -37,7 +37,11 @@ export default async function handler(request, response) {
     return response.status(405).json({ error: "Method not allowed." });
   } catch (error) {
     console.error("Submission API error:", error);
-    const message = error.message === "DATABASE_NOT_CONFIGURED" ? "Submission storage is not configured yet." : "The request could not be completed. Please try again.";
+    const messages = {
+      DATABASE_NOT_CONFIGURED: "Firebase credentials are incomplete.",
+      INVALID_SERVICE_ACCOUNT_JSON: "The Firebase service-account JSON is not valid.",
+    };
+    const message = messages[error.message] || "The request could not be completed. Please try again.";
     return response.status(503).json({ error: message });
   }
 }
