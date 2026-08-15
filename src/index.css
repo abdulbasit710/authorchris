@@ -122,3 +122,7 @@ canvas {
   p { line-height: 1.62; }
   input, select, textarea { font-size: 16px !important; }
 }
+/* Bot-trap field: kept in the form for automated spam detection. */
+.form-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+button:disabled { cursor: wait !important; opacity: .68; }
+.is-error { color: #ff8f8f !important; }

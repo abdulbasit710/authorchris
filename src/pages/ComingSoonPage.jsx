@@ -7,6 +7,7 @@ import FaqScroll from "../components/FaqScroll/FaqScroll";
 import bookThree from "../assets/book-image/book-3-mockup.png";
 import bookFour from "../assets/book-image/book-4-mockup.png";
 import "./ComingSoonPage.css";
+import { submitInquiry } from "../utils/submitInquiry";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -54,7 +55,8 @@ const comingFaqs = [
 
 function ComingSoonPage() {
   const pageRef = useRef(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState("idle");
+  const [formMessage, setFormMessage] = useState("");
 
   useGSAP(() => {
     const library = pageRef.current.querySelector(".coming-library");
@@ -106,10 +108,20 @@ function ComingSoonPage() {
     return () => shelfTimeline.kill();
   }, { scope: pageRef });
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    setFormStatus("sending");
+    setFormMessage("");
+    try {
+      await submitInquiry(form, "early-access");
+      form.reset();
+      setFormStatus("success");
+      setFormMessage("You're on the list. Your request has been sent.");
+    } catch (error) {
+      setFormStatus("error");
+      setFormMessage(error.message);
+    }
   };
 
   return (
@@ -214,6 +226,7 @@ function ComingSoonPage() {
             <span>Register your interest for title reveals, excerpts, release news, events, and ordering information.</span>
           </header>
           <form onSubmit={submitForm}>
+            <input className="form-honeypot" name="website" type="text" tabIndex="-1" autoComplete="off" aria-hidden="true" />
             <label>
               <span>Your name</span>
               <input name="name" type="text" placeholder="Your name" required />
@@ -232,8 +245,8 @@ function ComingSoonPage() {
                 <option>Speaking and launch events</option>
               </select>
             </label>
-            <button type="submit">Join the Early List <b aria-hidden="true">↗</b></button>
-            <p className={`coming-notify__success${submitted ? " is-visible" : ""}`} role="status">You're on the list. The next chapter starts here.</p>
+            <button type="submit" disabled={formStatus === "sending"}>{formStatus === "sending" ? "Sending…" : "Join the Early List"} <b aria-hidden="true">↗</b></button>
+            <p className={`coming-notify__success${formStatus === "success" ? " is-visible" : ""}${formStatus === "error" ? " is-visible is-error" : ""}`} role="status" aria-live="polite">{formMessage}</p>
           </form>
         </div>
       </section>

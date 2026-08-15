@@ -6,6 +6,7 @@ import LiquidEther from "../components/LiquidEther/LiquidEther";
 import VentureScroll from "../components/VentureScroll/VentureScroll";
 import FaqScroll from "../components/FaqScroll/FaqScroll";
 import "./ContactPage.css";
+import { submitInquiry } from "../utils/submitInquiry";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -55,7 +56,8 @@ const socialProfiles = [
 
 function ContactPage() {
   const pageRef = useRef(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState("idle");
+  const [formMessage, setFormMessage] = useState("");
 
   useGSAP(() => {
     gsap.fromTo(".contact-hero__copy > *",
@@ -109,10 +111,20 @@ function ContactPage() {
     });
   }, { scope: pageRef });
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    setFormStatus("sending");
+    setFormMessage("");
+    try {
+      await submitInquiry(form, "contact");
+      form.reset();
+      setFormStatus("success");
+      setFormMessage("Thank you. Your message has been sent to Christopher's team.");
+    } catch (error) {
+      setFormStatus("error");
+      setFormMessage(error.message);
+    }
   };
 
   return (
@@ -193,6 +205,7 @@ function ContactPage() {
           </header>
 
           <form onSubmit={submitForm}>
+            <input className="form-honeypot" name="website" type="text" tabIndex="-1" autoComplete="off" aria-hidden="true" />
             <label><span>Your name</span><input name="name" type="text" placeholder="Full name" required /></label>
             <label><span>Email address</span><input name="email" type="email" placeholder="you@example.com" required /></label>
             <label><span>Phone number</span><input name="phone" type="tel" placeholder="Optional" /></label>
@@ -210,8 +223,8 @@ function ContactPage() {
               </select>
             </label>
             <label className="contact-form__wide"><span>Your message</span><textarea name="message" rows="5" placeholder="Tell us about the idea, timing, audience, or opportunity..." required /></label>
-            <button type="submit">Send Your Inquiry <b aria-hidden="true">↗</b></button>
-            <p className={`contact-form__success${submitted ? " is-visible" : ""}`} role="status">Thank you. Your message is ready for the next conversation.</p>
+            <button type="submit" disabled={formStatus === "sending"}>{formStatus === "sending" ? "Sending…" : "Send Your Inquiry"} <b aria-hidden="true">↗</b></button>
+            <p className={`contact-form__success${formStatus === "success" ? " is-visible" : ""}${formStatus === "error" ? " is-visible is-error" : ""}`} role="status" aria-live="polite">{formMessage}</p>
           </form>
         </div>
       </section>

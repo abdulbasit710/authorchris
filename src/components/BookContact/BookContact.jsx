@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./BookContact.css";
+import { submitInquiry } from "../../utils/submitInquiry";
 
 function BookContact({
   bookTitle = "The Million-Dollar Mindset",
@@ -7,12 +8,23 @@ function BookContact({
   editionLabel = "First edition",
   editionYear = "2026",
 }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [formStatus, setFormStatus] = useState("idle");
+  const [formMessage, setFormMessage] = useState("");
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    setFormStatus("sending");
+    setFormMessage("");
+    try {
+      await submitInquiry(form, "book", { bookTitle });
+      form.reset();
+      setFormStatus("success");
+      setFormMessage("Thank you. Your inquiry has been sent to Christopher's team.");
+    } catch (error) {
+      setFormStatus("error");
+      setFormMessage(error.message);
+    }
   };
 
   return (
@@ -29,6 +41,7 @@ function BookContact({
         </header>
 
         <form onSubmit={submitForm}>
+          <input className="form-honeypot" name="website" type="text" tabIndex="-1" autoComplete="off" aria-hidden="true" />
           <div className="book-contact__field">
             <label htmlFor="book-contact-name">Your name</label>
             <input id="book-contact-name" name="name" type="text" placeholder="Christopher Reader" required />
@@ -56,10 +69,8 @@ function BookContact({
             <textarea id="book-contact-message" name="message" rows="4" placeholder="How can Christopher and his team help?" required />
           </div>
 
-          <button type="submit">Send Your Inquiry <span aria-hidden="true">↗</span></button>
-          <p className={`book-contact__success${submitted ? " is-visible" : ""}`} role="status">
-            Thank you. Your inquiry is ready for the next chapter.
-          </p>
+          <button type="submit" disabled={formStatus === "sending"}>{formStatus === "sending" ? "Sending…" : "Send Your Inquiry"} <span aria-hidden="true">↗</span></button>
+          <p className={`book-contact__success${formStatus === "success" ? " is-visible" : ""}${formStatus === "error" ? " is-visible is-error" : ""}`} role="status" aria-live="polite">{formMessage}</p>
         </form>
       </div>
     </section>

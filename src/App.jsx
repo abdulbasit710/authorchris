@@ -18,6 +18,7 @@ const MillionDollarMindsetPage = lazy(() => import("./pages/MillionDollarMindset
 const RealEstateMoneyPage = lazy(() => import("./pages/RealEstateMoneyPage"));
 const ComingSoonPage = lazy(() => import("./pages/ComingSoonPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const AdminPortalPage = lazy(() => import("./pages/AdminPortalPage"));
 
 function HomePage() {
   return (
@@ -42,6 +43,13 @@ function App() {
   const isMoneyPage = currentPath === "/books/the-power-of-new-real-estate-money";
   const isComingSoonPage = currentPath === "/books/coming-soon";
   const isContactPage = currentPath === "/contact";
+  const isAdminPortal = currentPath === "/admin/adminportal";
+
+  if (isAdminPortal) return (
+    <Suspense fallback={<main className="route-loading" aria-label="Loading admin portal" />}>
+      <AdminPortalPage />
+    </Suspense>
+  );
 
   return (
     <>
