@@ -11,6 +11,19 @@ async function readResponse(response) {
   return response.json();
 }
 
+async function apiFetch(url, options = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } catch (error) {
+    if (error.name === "AbortError") throw new Error("The server took too long to respond. Check the Vercel Function logs and Firebase credentials.");
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function AdminPortalPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
@@ -20,7 +33,7 @@ function AdminPortalPage() {
   const [status, setStatus] = useState("Checking access…");
 
   const load = async () => {
-    const response = await fetch("/api/submissions");
+    const response = await apiFetch("/api/submissions");
     if (response.status === 401) { setAuthenticated(false); setStatus(""); return; }
     const data = await readResponse(response);
     if (!response.ok) throw new Error(data.error);
@@ -33,11 +46,15 @@ function AdminPortalPage() {
 
   const login = async (event) => {
     event.preventDefault(); setStatus("Signing in…");
-    const response = await fetch("/api/admin-login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password }) });
+    let response;
+    try {
+      response = await apiFetch("/api/admin-login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password }) });
+    } catch (error) { setStatus(error.message); return; }
     let data;
     try { data = await readResponse(response); } catch (error) { setStatus(error.message); return; }
     if (!response.ok) { setStatus(data.error); return; }
-    setPassword(""); await load();
+    setPassword("");
+    try { await load(); } catch (error) { setStatus(error.message); }
   };
 
   const logout = async () => { await fetch("/api/admin-login", { method: "DELETE" }); setAuthenticated(false); setItems([]); };
