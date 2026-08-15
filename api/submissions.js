@@ -1,6 +1,7 @@
 import { isAdmin } from "./_auth.js";
 import { FieldValue } from "firebase-admin/firestore";
 import { getDatabase } from "./_firebase.js";
+import { sendSubmissionEmail } from "./_email.js";
 
 const FORM_NAMES = { contact: "Contact inquiry", book: "Book inquiry", "early-access": "Early access" };
 const LIMITS = { name: 120, email: 254, phone: 50, organization: 160, interest: 180, message: 5000, bookTitle: 200 };
@@ -15,8 +16,11 @@ export default async function handler(request, response) {
       const values = Object.fromEntries(Object.entries(LIMITS).map(([key, max]) => [key, clean(body[key], max)]));
       if (!values.name || !values.email || (formType !== "early-access" && !values.message)) return response.status(400).json({ error: "Please complete all required fields." });
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) return response.status(400).json({ error: "Please enter a valid email address." });
-      await getDatabase().collection("form_submissions").add({ form_type: formType, ...values, is_read: false, created_at: FieldValue.serverTimestamp() });
-      return response.status(201).json({ ok: true });
+      const submission = { form_type: formType, ...values };
+      const saved = await getDatabase().collection("form_submissions").add({ ...submission, is_read: false, created_at: FieldValue.serverTimestamp() });
+      let emailSent = false;
+      try { emailSent = await sendSubmissionEmail(submission, saved.id); } catch (emailError) { console.error("Email notification error:", emailError); }
+      return response.status(201).json({ ok: true, emailSent });
     }
 
     if (!isAdmin(request)) return response.status(401).json({ error: "Authentication required." });
