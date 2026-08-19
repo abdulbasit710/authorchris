@@ -12,6 +12,7 @@ import FaqScroll from "./components/FaqScroll/FaqScroll";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import CustomCursor from "./components/CustomCursor/CustomCursor";
+import BookLaunchPopup from "./components/BookLaunchPopup";
 
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const MillionDollarMindsetPage = lazy(() => import("./pages/MillionDollarMindsetPage"));
@@ -19,6 +20,7 @@ const RealEstateMoneyPage = lazy(() => import("./pages/RealEstateMoneyPage"));
 const ComingSoonPage = lazy(() => import("./pages/ComingSoonPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminPortalPage = lazy(() => import("./pages/AdminPortalPage"));
+
 
 function HomePage() {
   return (
@@ -53,6 +55,7 @@ function App() {
 
   return (
     <>
+    <BookLaunchPopup />
       <CustomCursor />
       <SiteHeader />
       {isContactPage ? (
