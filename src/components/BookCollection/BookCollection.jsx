@@ -152,9 +152,21 @@ function BookCollection() {
                 <p>{book.eyebrow}{book.comingSoon ? " · Coming Soon" : ""}</p>
                 <h3><a href={book.href}><UnbrokenTitle>{book.title}</UnbrokenTitle></a></h3>
                 <span>{book.copy}</span>
-                <a className="book-collection__page-link" href={book.href}>
-                  {book.comingSoon ? "View book details" : "Explore the book"}
-                </a>
+                <div className="book-collection__links">
+                  <a className="book-collection__page-link" href={book.href}>
+                    {book.comingSoon ? "View book details" : "Explore the book"}
+                  </a>
+                  {book.purchaseHref && (
+                    <a
+                      className="book-collection__page-link"
+                      href={book.purchaseHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Buy on Amazon
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}

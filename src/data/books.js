@@ -2,6 +2,7 @@ import bookOne from "../assets/book-image/book-1-mockup.png";
 import bookTwo from "../assets/book-image/book-2-mockup.png";
 import bookThree from "../assets/book-image/book-3-mockup.png";
 import bookFour from "../assets/book-image/book-4-mockup.png";
+import { MILLION_DOLLAR_MINDSET_AMAZON_URL } from "../constants/links";
 
 const books = [
   {
@@ -11,6 +12,7 @@ const books = [
     image: bookOne,
     copy: "Learning to Believe in Yourself—a complete guide to courage, confidence, disciplined action, and building a real estate legacy that lasts.",
     href: "/books/the-million-dollar-mindset",
+    purchaseHref: MILLION_DOLLAR_MINDSET_AMAZON_URL,
     comingSoon: false,
   },
   {

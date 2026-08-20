@@ -2,17 +2,32 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 import popupImage from "../assets/images/chris popup.jpg";
+import { MILLION_DOLLAR_MINDSET_AMAZON_URL } from "../constants/links";
 
-const AMAZON_URL = "https://a.co/d/07oeQNLB";
+const POPUP_SEEN_KEY = "million-dollar-mindset-launch-popup-seen";
+
+const shouldShowPopup = () => {
+  try {
+    return window.localStorage.getItem(POPUP_SEEN_KEY) !== "true";
+  } catch {
+    return true;
+  }
+};
 
 const BookLaunchPopup = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(shouldShowPopup);
 
   const overlayRef = useRef(null);
   const popupRef = useRef(null);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    try {
+      window.localStorage.setItem(POPUP_SEEN_KEY, "true");
+    } catch {
+      // The popup still works when browser storage is unavailable.
+    }
 
     // Stop page from scrolling while popup is open
     const previousOverflow = document.body.style.overflow;
@@ -134,7 +149,7 @@ const BookLaunchPopup = () => {
           BUY YOUR COPY NOW button inside the poster.
         */}
         <a
-          href={AMAZON_URL}
+          href={MILLION_DOLLAR_MINDSET_AMAZON_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="book-popup-amazon-link"

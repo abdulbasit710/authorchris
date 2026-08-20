@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import bookCover from "../../assets/book-image/book-1-mockup.png";
+import { MILLION_DOLLAR_MINDSET_AMAZON_URL } from "../../constants/links";
 import "./MindsetBookJourney.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -166,7 +167,7 @@ function MindsetBookJourney({
               <i className="mindset-journey__divider" aria-hidden="true"><b /></i>
               <span>{movement.copy}</span>
               {index === movementItems.length - 1 && (
-                <a href="https://amzn.eu/d/05jS7CSj" target="_blank" rel="noopener noreferrer">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
+                <a href={MILLION_DOLLAR_MINDSET_AMAZON_URL} target="_blank" rel="noopener noreferrer">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
               )}
             </div>
 
