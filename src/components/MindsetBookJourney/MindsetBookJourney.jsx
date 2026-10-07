@@ -30,6 +30,7 @@ function MindsetBookJourney({
   movements: movementItems = movements,
   bookImage = bookCover,
   bookTitle = "The Million-Dollar Mindset",
+  purchaseHref = MILLION_DOLLAR_MINDSET_AMAZON_URL,
   introEyebrow = "Inside the manuscript",
   introLead = "One book.",
   introAccent = "Three movements.",
@@ -167,7 +168,7 @@ function MindsetBookJourney({
               <i className="mindset-journey__divider" aria-hidden="true"><b /></i>
               <span>{movement.copy}</span>
               {index === movementItems.length - 1 && (
-                <a href={MILLION_DOLLAR_MINDSET_AMAZON_URL} target="_blank" rel="noopener noreferrer">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
+                <a href={purchaseHref} target="_blank" rel="noopener noreferrer">Buy Your Copy Now <b aria-hidden="true">↗</b></a>
               )}
             </div>
 

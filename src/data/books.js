@@ -2,7 +2,7 @@ import bookOne from "../assets/book-image/book-1-mockup.png";
 import bookTwo from "../assets/book-image/book-2-mockup.png";
 import bookThree from "../assets/book-image/book-3-mockup.png";
 import bookFour from "../assets/book-image/book-4-mockup.png";
-import { MILLION_DOLLAR_MINDSET_AMAZON_URL } from "../constants/links";
+import { MILLION_DOLLAR_MINDSET_AMAZON_URL, REAL_ESTATE_MONEY_AMAZON_URL } from "../constants/links";
 
 const books = [
   {
@@ -22,6 +22,7 @@ const books = [
     image: bookTwo,
     copy: "How modern lending, mortgage niches, and investor financing create wealth beyond traditional limits—for agents, borrowers, and investors.",
     href: "/books/the-power-of-new-real-estate-money",
+    purchaseHref: REAL_ESTATE_MONEY_AMAZON_URL,
     comingSoon: false,
   },
   {

@@ -5,6 +5,7 @@ import FaqScroll from "../components/FaqScroll/FaqScroll";
 import BookContact from "../components/BookContact/BookContact";
 import TestimonialsScroll from "../components/TestimonialsScroll/TestimonialsScroll";
 import bookCover from "../assets/book-image/book-2-mockup.png";
+import { REAL_ESTATE_MONEY_AMAZON_URL } from "../constants/links";
 import "./MillionDollarMindsetPage.css";
 
 const moneyMovements = [
@@ -116,6 +117,7 @@ function RealEstateMoneyPage() {
         movements={moneyMovements}
         bookImage={bookCover}
         bookTitle="The Power of New Real Estate Money"
+        purchaseHref={REAL_ESTATE_MONEY_AMAZON_URL}
         introEyebrow="Inside book two"
         introLead="New money."
         introAccent="Real opportunity."
