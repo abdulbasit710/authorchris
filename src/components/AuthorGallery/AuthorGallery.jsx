@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import "./AuthorGallery.css";
+import { MILLION_DOLLAR_MINDSET_AMAZON_URL, REAL_ESTATE_MONEY_AMAZON_URL } from "../../constants/links";
 
 import mindsetRelease from "../../assets/images/book-release-01-mindset.png";
 import powerRelease from "../../assets/images/book-release-02-power.png";
@@ -13,8 +14,8 @@ import completeLibrary from "../../assets/images/book-release-all-library.jpg";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const galleryItems = [
-  { image: mindsetRelease, label: "The Million-Dollar Mindset" },
-  { image: powerRelease, label: "The Power of New Real Estate Money" },
+  { image: mindsetRelease, label: "The Million-Dollar Mindset", purchaseHref: MILLION_DOLLAR_MINDSET_AMAZON_URL },
+  { image: powerRelease, label: "The Power of New Real Estate Money", purchaseHref: REAL_ESTATE_MONEY_AMAZON_URL },
   { image: marketingRelease, label: "Real Estate Marketing Domination" },
   { image: bookFourRelease, label: "Book Four · Complete Cover Presentation" },
   { image: completeLibrary, label: "The Complete Christopher DiCristo Library" },
@@ -113,7 +114,19 @@ function AuthorGallery() {
             <div className="horiz-gallery-strip">
               {galleryItems.map((item, index) => (
                 <figure className="project-wrap" key={`${item.label}-${index}`}>
-                  <img src={item.image} alt={item.label} />
+                  {item.purchaseHref ? (
+                    <a
+                      className="project-wrap__purchase-link"
+                      href={item.purchaseHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Buy ${item.label} on Amazon (opens in a new tab)`}
+                    >
+                      <img src={item.image} alt={item.label} />
+                    </a>
+                  ) : (
+                    <img src={item.image} alt={item.label} />
+                  )}
                   <figcaption>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                     {item.label}
